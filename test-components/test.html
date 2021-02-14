@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>three.js webgl - OBJ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="test.css">
+</head>
+
+<body>
+  <div id="info">
+    <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> -
+    OBJ loader test by <a href="https://github.com/aleeper" target="_blank" rel="noopener">aleeper</a>.<br />
+    PR2 head from <a href="http://www.ros.org/wiki/pr2_description">www.ros.org</a>
+  </div>
+  <canvas id="c" style="width:100%;height:100%;"></canvas>
+  <script type="module">
+    import * as THREE from './node_modules/three/build/three.module.js';
+    import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
+    import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+    import { MTLLoader } from './node_modules/three/examples/jsm/loaders/MTLLoader.js';
+    import {
+      BufferGeometry,
+      FileLoader,
+      Float32BufferAttribute,
+      Group,
+      LineBasicMaterial,
+      LineSegments,
+      Loader,
+      Material,
+      Mesh,
+      MeshPhongMaterial,
+      Points,
+      PointsMaterial,
+      Vector3
+    } from './node_modules/three/build/three.module.js';
+
+    function main() {
+      const canvas = document.querySelector('#c');
+      const renderer = new THREE.WebGLRenderer({ canvas });
+
+      const fov = 45;
+      const aspect = 2;  // the canvas default
+      const near = 0.1;
+      const far = 100;
+      var camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+      camera.position.set(-40, 10, 35);
+      const controls = new OrbitControls(camera, canvas);
+      controls.target.set(0, 5, 0);
+      controls.update();
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color('black');
+
+      {
+        const skyColor = 0x00000F;  // light blue
+        const groundColor = 0xFFA00A;  // brownish orange
+        const intensity = 1;
+        const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+        scene.add(light);
+      }
+
+      {
+        const color = 0xFFFFFF;
+        const intensity = 0.5;
+        const light = new THREE.DirectionalLight(color, intensity);
+        light.position.set(5, 10, 2);
+        scene.add(light);
+        scene.add(light.target);
+      }
+
+      {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl', (mtl) => {
+          mtl.preload();
+          const objLoader = new OBJLoader();
+          mtl.materials.Material.side = THREE.DoubleSide;
+          objLoader.setMaterials(mtl);
+          // objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+          objLoader.load('plane.obj', (root) => {
+            scene.add(root);
+          });
+        });
+      }
+
+      function resizeRendererToDisplaySize(renderer) {
+        const canvas = renderer.domElement;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        const needResize = canvas.width !== width || canvas.height !== height;
+        if (needResize) {
+          renderer.setSize(width, height, false);
+        }
+        return needResize;
+      }
+
+      function render() {
+        if (resizeRendererToDisplaySize(renderer)) {
+          const canvas = renderer.domElement;
+          camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          camera.updateProjectionMatrix();
+        }
+        // camera.position.set(camera.position.x +=1 , camera.position.y -= 1, camera.position.z -= 1);
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    }
+    main();
+  </script>
+</body>
+
+</html>
