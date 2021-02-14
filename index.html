@@ -356,11 +356,9 @@
   <main class="background-primary-900 padding-vertical-xxl">
     <!-- Contact Section -->
     <div class="container">
-      <!-- TODO: contact forms are OLD, you may try your hand at php and requests, but if I may say, please use some sort of embedded form -->
-      <h2 class="color-white display-title display-title-s margin-top-xxl">This contact form does not work, please devs, embed a typeform here or try your hand in php :)</h2>
       <h2 class="color-white display-title display-title-xxl margin-top-xxl" id="contact">Contact Us</h2>
       <p class="lead lead-s margin-vertical-m max-width-m"></p>
-      <form class="max-width-m" action="mail.php" method="POST">
+      <form name="contact" class="max-width-m" method="POST" data-netlify="true">
         <p class="field">
           <label for="form-simple-email">Name</label>
           <input type="name" id="form-simple-email" placeholder="Your Name" />
