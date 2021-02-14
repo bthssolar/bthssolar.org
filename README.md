@@ -1,5 +1,7 @@
 # Project Blue Bird Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9d47f13b-ba58-465e-be86-80523ca746e2/deploy-status)](https://app.netlify.com/sites/bthssolar/deploys)
+
 It's in the name.
 
 <img src="./images/funnybird.png" alt="drawing" width="500"/>
