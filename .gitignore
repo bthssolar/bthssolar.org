@@ -6,7 +6,6 @@
 
 # dependencies
 /node_modules
-/build
 
 # debug
 npm-debug.log*

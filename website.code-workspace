@@ -8,6 +8,8 @@
 		"cSpell.words": [
 			"BTHS",
 			"gltf"
-		]
+		],
+		"editor.autoIndent": "advanced",
+		"editor.tabSize": 4
 	}
 }
