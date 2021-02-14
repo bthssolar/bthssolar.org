@@ -1,0 +1,62 @@
+body {
+    margin:0;
+}
+.divider {
+    margin: 1em 0 1.25em;
+    max-width: 2rem;
+}
+#side-by-side {
+    float: right;
+}
+#inline-block {
+    display:inline-block;
+}
+.boxes {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+}
+.swatch {
+    display: block;
+    padding: 1em;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+.palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+}
+form>*>label {
+  color:white;
+}
+form>*>input {
+  color:black;
+}
+table>*,th,td {
+  background-color: black;
+  border: 1px solid black;
+}
+#c {
+  padding: 0;
+  height: 45%;
+  width: 45%;
+  float: right;
+  padding-left:0;
+}
+@media (max-width:640px) {
+  #c {
+    height: 45%;
+    width: 100%;
+    float: left;
+  }
+}
+#d {
+  padding: 0;
+  width: 50%;
+  float: right;
+  padding-left:10em;
+}
+.sponsor {
+  max-height: 3.5em;
+
+}
