@@ -149,7 +149,6 @@
     <section class="padding-vertical-xxl border-top border-color-light-100">
       <div class="container">
         <canvas id="c"></canvas>
-        <p>hello, this is a caption</p>
         <h2 class="display-title display-title-xxl margin-top-xxl">The Challenge</h2>
         <p class="lead lead-s margin-vertical-m max-width-m">
           The Solar Car Challenge was established in 1993 to help motivate students in science and engineering, and to
@@ -361,19 +360,22 @@
       <form name="contact" class="max-width-m" method="POST" data-netlify="true">
         <p class="field">
           <label for="form-simple-email">Name</label>
-          <input type="name" id="form-simple-email" placeholder="Your Name" />
+          <input type="name" name="name" id="form-simple-email" placeholder="Your Name" />
         </p>
         <p class="field">
           <label for="form-simple-password">Email</label>
-          <input type="email" id="form-simple-password" placeholder="Your Email" />
+          <input type="email" name="email" id="form-simple-password" placeholder="Your Email" />
         </p>
         <p class="field">
           <label for="form-simple-password">Subject</label>
-          <input type="subject" id="form-simple-password" placeholder="Subject" />
+          <input type="subject" name="subject" id="form-simple-password" placeholder="Subject" />
         </p>
         <p class="field">
           <label for="input-textarea">Textarea</label>
-          <textarea id="input-textarea" cols="30" rows="5" placeholder="Message"></textarea>
+          <textarea id="input-textarea" name="message" cols="30" rows="5" placeholder="Message"></textarea>
+        </p>
+        <p class="field">
+          <div data-netlify-recaptcha="true"></div>
         </p>
         <p>
           <button type="submit" value="Send" class="button button-tertiary">Submit</button>
@@ -446,9 +448,11 @@
       const near = 0.1;
       const far = 100;
       var camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-      camera.position.set(-40, 10, 15);
+      // camera.position.set(-40, 10, 15);
+      camera.position.set(20, 5, 0);
       const controls = new OrbitControls(camera, canvas);
-      controls.target.set(0, -5, 0);
+      // controls.target.set(0, -5, 0);
+      controls.target.set(0, 4, 0);
       controls.update();
 
       const scene = new THREE.Scene();
@@ -478,7 +482,8 @@
           const objLoader = new OBJLoader();
           mtl.materials.Material.side = THREE.DoubleSide;
           objLoader.setMaterials(mtl);
-          objLoader.load('assets/plane.obj', (root) => {
+          objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+          // objLoader.load('assets/plane.obj', (root) => {
             scene.add(root);
           });
         });
