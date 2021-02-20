@@ -51,12 +51,19 @@ table>*,th,td {
   }
 }
 #d {
-  padding: 0;
-  width: 50%;
+  padding:0;
+  width: 30%;
   float: right;
-  padding-left:10em;
+  padding-left:0em;
+  border-bottom: 9em;
 }
 .sponsor {
   max-height: 3.5em;
 
+}
+hr.divider {
+  margin:0;
+}
+.e {
+  border-color:black;
 }
