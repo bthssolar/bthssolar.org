@@ -67,3 +67,6 @@ hr.divider {
 .e {
   border-color:black;
 }
+td {
+  max-width: 12em;
+}
