@@ -1,6 +1,7 @@
 html {
   --scrollbarBG: #3f3f3f;
   --thumbBG: #bebebe;
+  scroll-behavior: smooth;
 }
 body::-webkit-scrollbar {
   width: 11px;
