@@ -1,5 +1,21 @@
+html {
+  --scrollbarBG: #3f3f3f;
+  --thumbBG: #bebebe;
+}
+body::-webkit-scrollbar {
+  width: 11px;
+}
 body {
-    margin:0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 0 solid var(--scrollbarBG);
 }
 .divider {
     margin: 1em 0 1.25em;
@@ -52,10 +68,13 @@ table>*,th,td {
 }
 #d {
   padding:0;
-  width: 30%;
+  width: 40%;
   float: right;
   padding-left:0em;
   border-bottom: 9em;
+}
+.shadowed {
+  box-shadow: 0 0 20px black;
 }
 .sponsor {
   max-height: 3.5em;
@@ -69,4 +88,16 @@ hr.divider {
 }
 td {
   max-width: 12em;
+}
+.glow {
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: normal;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  padding:2%;
+}
+.glow:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(255, 255, 253, 0.822);
 }

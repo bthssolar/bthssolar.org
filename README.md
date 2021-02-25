@@ -1,6 +1,8 @@
-# Project Blue Bird Website
+# Our Homepage
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9d47f13b-ba58-465e-be86-80523ca746e2/deploy-status)](https://app.netlify.com/sites/bthssolar/deploys)
+
+Codename: BlueBird
 
 It's in the name.
 
