@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="title" content="Hello | BTHS Solar Car">
   <meta property="description" content="The Brooklyn Technical High School Solar Car Team">
-  <meta property="url" content="https://bthssolar.netlify.app">
+  <meta property="url" content="https://bthssolar.org">
   <meta property="site_name" content="BTHS Solar Car">
   <meta property="type" content="website">
   <title>Hello | BTHS Solar Car</title>
-  <link rel="canonical" href="https://bthssolar.netlify.app">
+  <link rel="canonical" href="https://bthssolar.org">
   <link rel="shortcut icon" media="(prefers-color-scheme:light)" href="/images/dark-favicon.svg" type="image/x-icon">
   <link rel="shortcut icon" media="(prefers-color-scheme:dark)" href="/images/light-favicon.svg" type="image/x-icon">
   <script src="/js/favicon-switcher.js"></script>
@@ -51,7 +51,7 @@
           <li>
             <!-- <a class="button button-white button-border button-icon" href="/race-with-us.html"> -->
             <a class="button button-white button-border button-icon" href="/contact.html">
-              <span>Race With Us</span>
+              <span>Sponsor Us!</span>
               <svg width="24" height="24" viewBox="0 0 24 24">
                 <title>right</title>
                 <path
@@ -66,7 +66,8 @@
     <!-- Action Section -->
     <div class="container">
       <div class="color-white boxes margin-top-l">
-        <div class="background-white padding-m box-shadow-l flex flex-column justify-content-space-between border-radius color-black">
+        <div
+          class="background-white padding-m box-shadow-l flex flex-column justify-content-space-between border-radius color-black">
           <div class="flex-auto">
             <h3 class="margin-top-m">About Our Team</h3>
             <p class="color-black">Our team is experienced in many different fields.</p>
@@ -105,8 +106,8 @@
           class="background-white padding-m box-shadow-l flex flex-column justify-content-space-between border-radius color-black">
           <div class="flex-auto">
             <h3 class="margin-top-m">Join Our Team</h3>
-            <p class="color-black">Students, advisors and educators are all welcome to join and help build the first
-              solar car at BTHS.</p>
+            <p class="color-black">Students, advisors and educators are all welcome to join and help build
+              the first solar car at BTHS.</p>
           </div>
           <p class="flex-none">
             <a href="join-the-team.html" class="button button-secondary button-icon button-text">
@@ -124,7 +125,8 @@
           class="background-white padding-m box-shadow-l flex flex-column justify-content-space-between border-radius color-black">
           <div class="flex-auto">
             <h3 class="margin-top-m">Get in Touch</h3>
-            <p class="color-black">Our Outreach Team will get in touch with you shortly and work something out.</p>
+            <p class="color-black">Our Outreach Team will get in touch with you shortly and work something
+              out.</p>
           </div>
           <p class="flex-none">
             <a href="/contact.html" class="button button-primary button-icon button-text" rel="noopener noreferrer">
@@ -157,13 +159,15 @@
     <section class="padding-vertical-xxl border-top border-color-light-100">
       <div class="container">
         <!-- <canvas id="c"></canvas> -->
-        <img src="images/Solar_Car_Rendering.jpg" id="c"></img>
+        <img src="images/Solar_Car_Rendering.jpg" alt="rendered model of BTHS solar car" id="c"></img>
         <h2 class="display-title display-title-xxl margin-top-xxl">The Challenge</h2>
         <p class="lead lead-s margin-vertical-m max-width-m">
-          The Solar Car Challenge was established in 1993 to help motivate students in science and engineering, and to
+          The Solar Car Challenge was established in 1993 to help motivate students in science and
+          engineering, and to
           increase alternative energy awareness.
           The Challenge teaches high school students around the world how to build roadworthy solar cars.
-          The 2021 Solar Car Challenge hosted by Texas Instruments is a closed-track event at the world-famous Texas
+          The 2021 Solar Car Challenge hosted by Texas Instruments is a closed-track event at the world-famous
+          Texas
           Motor Speedway.
           For more information, visit their <a href="https://www.solarcarchallenge.org/challenge/">website</a>.
         </p>
@@ -171,11 +175,8 @@
           <i>Artist's rendition of BTHS Solar Car to the right</i>
         </p>
         <br> <br>
-        <a href="https://www.solarcarchallenge.org/challenge/"><img class="max-width-xs margin-top-l" src="https://www.solarcarchallenge.org/challenge/images/scc2019.jpg"
-          alt="group photo of solar car challenge"></a>
-        <a href="https://www.solarcarchallenge.org/challenge/"><img class="max-width-xs margin-top-l"
-          src="https://www.solarcarchallenge.org/challenge/wrkshporiginal/2020wksp01.jpg"
-          alt="group photo of solar car challenge"></a>
+        <img class="max-width-xs margin-top-l" src="/images/frame.png" alt="group photo of solar car challenge">
+        <img class="max-width-xs margin-top-l" src="/images/air_flow.png" alt="group photo of solar car challenge">
       </div>
       <br> <br> <br> <br>
     </section>
@@ -219,94 +220,6 @@
       </table>
     </div>
   </footer>
-  <script type="module">
-    import * as THREE from './node_modules/three/build/three.module.js';
-    import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
-    import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-    import { MTLLoader } from './node_modules/three/examples/jsm/loaders/MTLLoader.js';
-    import {
-      BufferGeometry, FileLoader, Float32BufferAttribute, Group,
-      LineBasicMaterial, LineSegments, Loader, Material, Mesh,
-      MeshPhongMaterial, Points, PointsMaterial, Vector3
-    }
-      from './node_modules/three/build/three.module.js';
-
-    function main() {
-      const canvas = document.querySelector('#c');
-      const renderer = new THREE.WebGLRenderer({ canvas });
-
-      const fov = 45;
-      const aspect = 2;  // the canvas default
-      const near = 0.1;
-      const far = 100;
-      var camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-      // camera.position.set(-40, 10, 15);
-      camera.position.set(20, 5, 0);
-      const controls = new OrbitControls(camera, canvas);
-      // controls.target.set(0, -5, 0);
-      controls.target.set(0, 4, 0);
-      controls.update();
-
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xFFFFFF);
-      controls.addEventListener('change', render);
-
-      {
-        const skyColor = 0x00000F;  // light blue
-        const groundColor = 0xFFA00A;  // brownish orange
-        const intensity = 1;
-        const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-        scene.add(light);
-      }
-
-      {
-        const color = 0xFFFFFF;
-        const intensity = 0.5;
-        const light = new THREE.DirectionalLight(color, intensity);
-        light.position.set(5, 10, 2);
-        scene.add(light);
-        scene.add(light.target);
-      }
-
-      {
-        const mtlLoader = new MTLLoader();
-        mtlLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl', (mtl) => {
-          mtl.preload();
-          const objLoader = new OBJLoader();
-          mtl.materials.Material.side = THREE.DoubleSide;
-          objLoader.setMaterials(mtl);
-          // objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
-            // objLoader.load('assets/plane.obj', (root) => {
-            objLoader.load('assets/car.obj', (root) => {
-            scene.add(root);
-          });
-        });
-      }
-
-      function resizeRendererToDisplaySize(renderer) {
-        const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
-        if (needResize) {
-          renderer.setSize(width, width, false);
-        }
-        return needResize;
-      }
-
-      function render() {
-        if (resizeRendererToDisplaySize(renderer)) {
-          const canvas = renderer.domElement;
-          camera.aspect = canvas.clientWidth / canvas.clientHeight;
-          camera.updateProjectionMatrix();
-        }
-        renderer.render(scene, camera);
-        requestAnimationFrame(render);
-      }
-      requestAnimationFrame(render);
-    }
-    main();
-  </script>
 </body>
 
 </html>

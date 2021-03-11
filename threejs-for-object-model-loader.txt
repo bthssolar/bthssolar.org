@@ -1,0 +1,88 @@
+<script type="module">
+    import * as THREE from './node_modules/three/build/three.module.js';
+    import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
+    import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+    import { MTLLoader } from './node_modules/three/examples/jsm/loaders/MTLLoader.js';
+    import {
+        BufferGeometry, FileLoader, Float32BufferAttribute, Group,
+        LineBasicMaterial, LineSegments, Loader, Material, Mesh,
+        MeshPhongMaterial, Points, PointsMaterial, Vector3
+    }
+        from './node_modules/three/build/three.module.js';
+
+    function main() {
+        const canvas = document.querySelector('#c');
+        const renderer = new THREE.WebGLRenderer({ canvas });
+
+        const fov = 45;
+        const aspect = 2;  // the canvas default
+        const near = 0.1;
+        const far = 100;
+        var camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+        // camera.position.set(-40, 10, 15);
+        camera.position.set(20, 5, 0);
+        const controls = new OrbitControls(camera, canvas);
+        // controls.target.set(0, -5, 0);
+        controls.target.set(0, 4, 0);
+        controls.update();
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xFFFFFF);
+        controls.addEventListener('change', render);
+
+        {
+            const skyColor = 0x00000F;  // light blue
+            const groundColor = 0xFFA00A;  // brownish orange
+            const intensity = 1;
+            const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+            scene.add(light);
+        }
+
+        {
+            const color = 0xFFFFFF;
+            const intensity = 0.5;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(5, 10, 2);
+            scene.add(light);
+            scene.add(light.target);
+        }
+
+        {
+            const mtlLoader = new MTLLoader();
+            mtlLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl', (mtl) => {
+                mtl.preload();
+                const objLoader = new OBJLoader();
+                mtl.materials.Material.side = THREE.DoubleSide;
+                objLoader.setMaterials(mtl);
+                objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+                    objLoader.load('assets/car.obj', (root) => {
+                        scene.add(root);
+                    });
+                });
+            });
+        }
+
+        function resizeRendererToDisplaySize(renderer) {
+            const canvas = renderer.domElement;
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+            const needResize = canvas.width !== width || canvas.height !== height;
+            if (needResize) {
+                renderer.setSize(width, width, false);
+            }
+            return needResize;
+        }
+
+        function render() {
+            if (resizeRendererToDisplaySize(renderer)) {
+                const canvas = renderer.domElement;
+                camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                camera.updateProjectionMatrix();
+            }
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+    }
+    main();
+</script>
